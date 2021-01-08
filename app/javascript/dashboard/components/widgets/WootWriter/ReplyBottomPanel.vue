@@ -14,6 +14,9 @@
           📎
         </file-upload>
       </button>
+      <button class="button clear button--emoji" @click="toggleFormatMode">
+        🖊️
+      </button>
     </div>
     <div class="right-wrap">
       <button
@@ -67,6 +70,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    setFormatMode: {
+      type: Function,
+      default: () => {},
+    },
+    isFormatMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     wrapClass() {
@@ -79,6 +90,11 @@ export default {
         'button--note': this.mode === REPLY_EDITOR_MODES.NOTE,
         'button--disabled': this.isSendDisabled,
       };
+    },
+  },
+  methods: {
+    toggleFormatMode() {
+      this.setFormatMode(!this.isFormatMode);
     },
   },
 };
